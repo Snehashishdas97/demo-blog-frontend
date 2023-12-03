@@ -16,6 +16,15 @@ const PostUpdateForm = ({
   const textAreaRef = useRef(null);
   const authCtx = useContext(AuthContext);
   const { t } = useTranslation();
+  var date = new Date(post.postedOn);
+  const yyyy = date.getFullYear();
+  let mm = date.getMonth() + 1; // month is zero-based
+  let dd = date.getDate();
+
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+
+  const postedOn = dd + '/' + mm + '/' + yyyy;
 
   useEffect(() => {
     textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
@@ -36,7 +45,7 @@ const PostUpdateForm = ({
     >
       {(formik) => (
         <Card className="boxShadow">
-          <Card.Header className="fst-italic">{post.blogUser}</Card.Header>
+          <Card.Header className="fst-italic">{post.postedBy}</Card.Header>
           <Card.Body>
             <Card.Title className="fst-italic">{post.title}</Card.Title>
             <Form onSubmit={formik.handleSubmit}>
@@ -98,8 +107,7 @@ const PostUpdateForm = ({
             </Form>
           </Card.Body>
           <Card.Footer className="d-flex text-muted">
-            <div className="me-auto">{`${t("posted")}: ${post.createdOn}`}</div>
-            <div>{`${t("edited")}: ${post.updatedOn}`}</div>
+            <div className="me-auto">{`${t("postedOn")}: ${postedOn}`}</div>
           </Card.Footer>
         </Card>
       )}

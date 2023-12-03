@@ -5,6 +5,15 @@ import { useTranslation } from "react-i18next";
 
 const PostThumbnail = (props) => {
   const { t } = useTranslation();
+  var date = new Date(props.post.postedOn);
+  const yyyy = date.getFullYear();
+  let mm = date.getMonth() + 1; // month is zero-based
+  let dd = date.getDate();
+
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+
+  const postedOn = dd + '/' + mm + '/' + yyyy;
 
   return (
     <Link
@@ -13,7 +22,7 @@ const PostThumbnail = (props) => {
       className="thumbnail text-decoration-none text-black"
     >
       <Card className="h-100 boxShadow">
-        <Card.Header className="fst-italic">{props.post.blogUser}</Card.Header>
+        <Card.Header className="fst-italic">{props.post.postedBy}</Card.Header>
         <Card.Body>
           <Card.Title className="fst-italic">{props.post.title}</Card.Title>
           <Card.Text style={{ textAlign: "justify" }}>
@@ -21,10 +30,7 @@ const PostThumbnail = (props) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer className="d-flex text-muted">
-          <div className="me-auto">{`${t("postedBy")}: ${
-            props.post.postedBy
-          }`}</div>
-          <div>{`${t("postedOn")}: ${props.post.postedOn}`}</div>
+          <div>{`${t("postedOn")}: ${postedOn}`}</div>
         </Card.Footer>
       </Card>
     </Link>

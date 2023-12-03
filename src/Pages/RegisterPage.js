@@ -18,7 +18,7 @@ const RegisterPage = (props) => {
         setIsRegistrationSuccess(false);
         navigate("/login");
       }
-    }, 2000);
+    }, 1000);
   }, [isRegistrationSuccess]);
 
   const onSubmit = (values, formikHelpers) => {

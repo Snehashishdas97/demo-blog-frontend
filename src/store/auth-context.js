@@ -19,13 +19,13 @@ export const AuthContextProvider = (props) => {
 
   const userIsLoggedIn = !!token;
 
-  const loginHandler = ({ userName, authorities, jwt }) => {
+  const loginHandler = ({ userName, authorities, token }) => {
     setUserName(userName);
     setAuthorities(authorities);
-    setToken(jwt);
+    setToken(token);
     sessionStorage.setItem("userName", userName);
     sessionStorage.setItem("authorities", authorities);
-    sessionStorage.setItem("token", jwt);
+    sessionStorage.setItem("token", token);
   };
 
   const logoutHandler = () => {

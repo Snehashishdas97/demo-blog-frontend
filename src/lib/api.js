@@ -6,21 +6,16 @@ export const getAllPosts = async () => {
 };
 
 export const getPostById = async (id, token) => {
-  const response = await fetch(`${BLOG_DOMAIN}/post/${id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetch(`${BLOG_DOMAIN}/post/${id}`);
+  const data =  await response.json()
   if (!response.ok) {
     throw new Error("Post with id: " + id + " not found");
   }
-  return await response.json();
+  return data;
 };
 
 export const submitNewPost = async (newPost, token) => {
-  const response = await fetch(`${BLOG_DOMAIN}/posts`, {
+  const response = await fetch(`${BLOG_DOMAIN}/post/1`, {
     method: "POST",
     body: JSON.stringify(newPost),
     headers: {
@@ -62,8 +57,8 @@ export const deletePost = async (postId, token) => {
   return response.ok;
 };
 
-export const submitNewComment = async (newComment, token) => {
-  const response = await fetch(`${BLOG_DOMAIN}/comments`, {
+export const submitNewComment = async (postId, newComment, token) => {
+  const response = await fetch(`${BLOG_DOMAIN}/comment/${postId}`, {
     method: "POST",
     body: JSON.stringify(newComment),
     headers: {

@@ -16,7 +16,7 @@ const NewCommentForm = ({ postId, onContentChange }) => {
 
   const onSubmit = (comment, formikHelpers) => {
     setTimeout(() => {
-      submitNewComment({ id: postId, ...comment }, authCtx.token)
+      submitNewComment(postId, comment, authCtx.token)
         .then(() => {
           formikHelpers.resetForm();
           setIsSubmitted(true);

@@ -22,7 +22,7 @@ const NewPostPage = (props) => {
         setTimeout(() => {
           setNewPostId(post.id);
           setIsSubmitted(true);
-        }, 2000);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -30,7 +30,7 @@ const NewPostPage = (props) => {
       .finally(() => {
         setTimeout(() => {
           formikHelpers.setSubmitting(false);
-        }, 2000);
+        }, 1000);
       });
   };
 
@@ -40,7 +40,7 @@ const NewPostPage = (props) => {
         setIsSubmitted(false);
         navigate(`/post/${newPostId}`);
       }
-    }, 2000);
+    }, 1000);
   }, [isSubmitted]);
 
   return (

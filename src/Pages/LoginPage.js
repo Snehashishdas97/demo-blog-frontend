@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import { login } from "../lib/api";
 import LoginForm from "../Components/Forms/LoginForm";
 import AuthContext from "../store/auth-context";
+import { useNavigate } from "react-router-dom";
 import Banner from "../Components/Banner";
 import { useTranslation } from "react-i18next";
 
@@ -10,7 +11,17 @@ const LoginPage = (props) => {
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
   const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (isLoginSuccess) {
+        setIsLoginSuccess(false);
+        navigate("/");
+      }
+    }, 1000);
+  }, [isLoginSuccess]);
 
   const onSubmit = (loginRequest, formikHelpers) => {
     setTimeout(() => {
@@ -20,7 +31,7 @@ const LoginPage = (props) => {
           setLoginMessage(`${t("signedInAs")} ${loginResponse.userName}`);
           setTimeout(() => {
             authCtx.login(loginResponse);
-          }, 2000);
+          }, 1000);
         })
         .catch((error) => {
           if (error.message.includes("password")) {
