@@ -20,7 +20,7 @@ const NewPostPage = (props) => {
       .then((post) => {
         // console.log(post);
         setTimeout(() => {
-          setNewPostId(post.id);
+          setNewPostId(post.data.id);
           setIsSubmitted(true);
         }, 1000);
       })
