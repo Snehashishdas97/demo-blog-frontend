@@ -1,4 +1,4 @@
-const BLOG_DOMAIN = process.env.BACKEND_ENV_URL || "http://localhost:9090/api";
+const BLOG_DOMAIN = "http://35.226.51.207:8080/api";
 
 export const getAllPosts = async () => {
   const response = await fetch(`${BLOG_DOMAIN}/post`);
