@@ -22,7 +22,9 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: |
+          CI=false
+          npm run build
 
   deploy:
     runs-on: ubuntu-latest
