@@ -49,10 +49,6 @@ jobs:
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
-
-      - name: Initialize Firebase project
-        run: |
-           echo -e "\n" | firebase init hosting --non-interactive
         
       - name: Deploy to Firebase
-        run: firebase use --add $FIREBASE_PROJECT_ID --token $FIREBASE_TOKEN && firebase deploy --token $FIREBASE_TOKEN
+        run: firebase deploy --project $FIREBASE_PROJECT_ID --token $FIREBASE_TOKEN
